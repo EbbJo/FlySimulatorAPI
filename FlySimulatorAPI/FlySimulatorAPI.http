@@ -1,0 +1,6 @@
+@FlySimulatorAPI_HostAddress = http://localhost:5151
+
+GET {{FlySimulatorAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

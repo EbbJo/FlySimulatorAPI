@@ -13,7 +13,7 @@ public abstract class EnginePoweredPlane(
         return EngineParams.FuelEfficiency * km;
     }
 
-    public override double FuelOverDistance(ICollection<GpsCoordinates> coords) {
+    public override double FuelOverDistance(params GpsCoordinates[] coords) {
         return EngineParams.FuelEfficiency * GpsCoordinates.ChainDistKm(coords);
     }
 }

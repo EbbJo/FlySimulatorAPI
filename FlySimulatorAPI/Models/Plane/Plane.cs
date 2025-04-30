@@ -20,7 +20,7 @@ public abstract class Plane(string modelName, double baseWeight) {
         return 0d;
     }
 
-    public virtual double FuelOverDistance(ICollection<GpsCoordinates> coords) {
+    public virtual double FuelOverDistance(params GpsCoordinates[] coords) {
         return 0d;
     }
 }

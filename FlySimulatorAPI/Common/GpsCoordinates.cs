@@ -65,22 +65,28 @@ public class GpsCoordinates {
         return DistRadians(other) * EarthRadiusKm;
     }
 
-    public static double ChainDistDegrees(ICollection<GpsCoordinates> coords) {
-        var coordsArray = coords.ToArray();
-        
-        if (coordsArray.Length < 2) return 0;
+    public static double ChainDistDegrees(params GpsCoordinates[] coords) {
+        if (coords.Length < 2) return 0;
 
         double totalDist = 0;
 
-        for (int i = 0; i < coordsArray.Length-1; i++) {
-            totalDist += coordsArray[i].DistDegrees(coordsArray[i + 1]);
+        for (int i = 0; i < coords.Length-1; i++) {
+            totalDist += coords[i].DistDegrees(coords[i + 1]);
         }
         
         return totalDist;
     }
 
-    public static double ChainDistKm(ICollection<GpsCoordinates> coords) {
-        return ChainDistDegrees(coords) * EarthRadiusKm;
+    public static double ChainDistKm(params GpsCoordinates[] coords) {
+        if (coords.Length < 2) return 0;
+
+        double totalDist = 0;
+
+        for (int i = 0; i < coords.Length-1; i++) {
+            totalDist += coords[i].DistKm(coords[i + 1]);
+        }
+        
+        return totalDist;
     }
 
     public override string ToString() {

@@ -1,6 +1,6 @@
-﻿namespace FlySimulatorAPI.Models.Plane;
+﻿namespace FlySimulatorAPI.Models.Engine;
 
-public interface IEnginePowered {
+public class EngineParameters {
     /// <summary>
     /// Liters
     /// </summary>

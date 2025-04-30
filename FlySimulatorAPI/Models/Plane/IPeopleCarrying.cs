@@ -1,6 +1,6 @@
 ﻿namespace FlySimulatorAPI.Models.Plane;
 
-public interface IPassengerCarrying {
+public interface IPeopleCarrying {
     public uint PassengerCapacity { get; set; }
 
     /// <summary>

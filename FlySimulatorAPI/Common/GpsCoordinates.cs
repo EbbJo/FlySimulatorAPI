@@ -1,22 +1,42 @@
 ﻿namespace FlySimulatorAPI.Common;
 
+/// <summary>
+/// Represents a point on the earth. Earth's radius is assumed to be 6371km.
+/// </summary>
 public class GpsCoordinates {
     public const double EarthRadiusKm = 6371d;
     
-    private double _latitude;
-    private double _longitude;
-    
-    //Coordinates are exposed as degrees to make calculations easier for
-    //outside actors.
-    
-    public double Latitude {
-        get => _latitude.RadiansToDegrees();
-        set => _latitude = value.DegreesToRadians();
+    /// <summary>
+    /// The latitude of the point in radians.
+    /// </summary>
+    public double LatitudeRad { get; set; }
+
+    /// <summary>
+    /// The longitude of the point in radians.
+    /// </summary>
+    public double LongitudeRad { get; set; }
+
+    /// <summary>
+    /// The latitude of the point in degrees.
+    /// </summary>
+    public double LatitudeDeg {
+        get => LatitudeRad.RadiansToDegrees();
+        set => LatitudeRad = value.DegreesToRadians();
     }
     
-    public double Longitude {
-        get => _longitude.RadiansToDegrees();
-        set => _longitude = value.DegreesToRadians();
+    /// <summary>
+    /// The longitude of the point in degrees.
+    /// </summary>
+    public double LongitudeDeg {
+        get => LongitudeRad.RadiansToDegrees();
+        set => LongitudeRad = value.DegreesToRadians();
+    }
+
+    public GpsCoordinates() {}
+    
+    public GpsCoordinates(double latitudeDeg, double longitudeDeg) {
+        LatitudeDeg = latitudeDeg;
+        LongitudeDeg = longitudeDeg;
     }
 
     /// <summary>
@@ -27,14 +47,43 @@ public class GpsCoordinates {
     /// <param name="other"></param>
     /// <returns></returns>
     public double DistDegrees(GpsCoordinates other) {
+        return DistRadians(other).RadiansToDegrees();
+    }
+
+    public double DistRadians(GpsCoordinates other) {
         return Math.Acos(
-            Math.Sin(_latitude) * Math.Sin(other._latitude) +
-            Math.Cos(_latitude) * Math.Cos(other._latitude) *
-            Math.Cos(_longitude * other._longitude)
-        ).RadiansToDegrees();
+            Math.Sin(LatitudeRad)*
+            Math.Sin(other.LatitudeRad)
+            +
+            Math.Cos(LatitudeRad)*
+            Math.Cos(other.LatitudeRad)*
+            Math.Cos(LongitudeRad - other.LongitudeRad)
+        );
     }
 
     public double DistKm(GpsCoordinates other) {
-        return DistDegrees(other) * EarthRadiusKm;
+        return DistRadians(other) * EarthRadiusKm;
+    }
+
+    public static double ChainDistDegrees(ICollection<GpsCoordinates> coords) {
+        var coordsArray = coords.ToArray();
+        
+        if (coordsArray.Length < 2) return 0;
+
+        double totalDist = 0;
+
+        for (int i = 0; i < coordsArray.Length-1; i++) {
+            totalDist += coordsArray[i].DistDegrees(coordsArray[i + 1]);
+        }
+        
+        return totalDist;
+    }
+
+    public static double ChainDistKm(ICollection<GpsCoordinates> coords) {
+        return ChainDistDegrees(coords) * EarthRadiusKm;
+    }
+
+    public override string ToString() {
+        return $"Lat: {LatitudeDeg}, Lon: {LongitudeDeg}";
     }
 }

@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=E56F932E_002D61CF_002D491B_002DB46E_002D1D22E850F8F2/@EntryIndexedValue">FlySimulatorAPI.Tests</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3eb0706f_002Df8cb_002D4466_002Dbd08_002D7950f1c9e219/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DistKm_TwoPoints_ExpectedValue" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::86A9E6AD-0D0E-4BFD-BB9D-92D8F10003A0::net9.0::FlySimulatorAPI.Tests.Common.GpsCoordinatesTest.DistKm_TwoPoints_ExpectedValue&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>

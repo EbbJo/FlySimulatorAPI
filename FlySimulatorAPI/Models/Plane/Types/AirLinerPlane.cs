@@ -1,17 +1,22 @@
-﻿using FlySimulatorAPI.Models.Engine;
+﻿using System.ComponentModel.DataAnnotations;
+using FlySimulatorAPI.Models.Engine;
 
 namespace FlySimulatorAPI.Models.Plane.Types;
 
-public class AirLinerPlane(string modelName, double baseWeight, EngineParameters engineParams)
-    : EnginePoweredPlane(modelName, baseWeight, engineParams), IPeopleCarrying, ICargoCarrying {
+public class AirLinerPlane : EnginePoweredPlane, IPeopleCarrying, ICargoCarrying {
 
     public override PlaneType Type => PlaneType.Airliner;
+
+    [Required] public uint PassengerCapacity { get; set; } = 0;
+
+    [Required] public double FullPassengerCapacityWeightAddition { get; set; } = 0d;
+
+    [Required] public double CargoWeightCapacity { get; set; } = 0d;
+
+    public AirLinerPlane() { }
     
-    public uint PassengerCapacity { get; set; }
-
-    public double FullPassengerCapacityWeightAddition { get; set; }
-
-    public double CargoWeightCapacity { get; set; }
+    public AirLinerPlane(string modelName, double baseWeight, EngineParameters engineParams)
+     : base(modelName, baseWeight, engineParams) { }
 
     public AirLinerPlane(string modelName, double baseWeight, EngineParameters engineParams, uint passengerCapacity,
         double fullPassengerCapacityWeightAddition, double cargoWeightCapacity)

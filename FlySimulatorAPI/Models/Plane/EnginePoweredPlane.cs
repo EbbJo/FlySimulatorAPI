@@ -1,14 +1,20 @@
-﻿using FlySimulatorAPI.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using FlySimulatorAPI.Common;
 using FlySimulatorAPI.Models.Engine;
 
 namespace FlySimulatorAPI.Models.Plane;
 
-public abstract class EnginePoweredPlane(
-    string modelName, double baseWeight, EngineParameters engineParams)
-    : Plane(modelName, baseWeight) {
+public abstract class EnginePoweredPlane : Plane {
 
-    public EngineParameters EngineParams { get; private set; } = engineParams;
+    [Required] public EngineParameters EngineParams { get; set; } = new();
 
+    protected EnginePoweredPlane() { }
+    
+    protected EnginePoweredPlane(string modelName, double baseWeight, EngineParameters engineParams)
+        : base(modelName, baseWeight) {
+        EngineParams = engineParams;
+    }
+    
     public override double FuelOverDistance(double km) {
         return EngineParams.FuelEfficiency * km;
     }

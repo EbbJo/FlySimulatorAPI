@@ -1,13 +1,17 @@
-﻿namespace FlySimulatorAPI.Models.Engine;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FlySimulatorAPI.Models.Engine;
 
 public class EngineParameters {
     /// <summary>
     /// Liters
     /// </summary>
-    public double FuelCapacity { get; set; }
-    
+    [Required]
+    public double FuelCapacity { get; set; } = 0d;
+
     /// <summary>
     /// Liters per kilometer
     /// </summary>
-    public double FuelEfficiency { get; set; }
+    [Required]
+    public double FuelEfficiency { get; set; } = 0d;
 }

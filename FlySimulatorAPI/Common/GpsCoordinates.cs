@@ -40,16 +40,27 @@ public class GpsCoordinates {
     }
 
     /// <summary>
-    /// Derived from:
-    /// https://edwilliams.org/avform147.htm#Dist
-    /// d=acos(sin(lat1)*sin(lat2)+cos(lat1)*cos(lat2)*cos(lon1-lon2))
+    /// Distance between two geological points given in degrees.
+    ///
+    /// Derived from: https://edwilliams.org/avform147.htm#Dist
+    ///
+    /// Formula: <b>d=acos(sin(lat1)*sin(lat2)+cos(lat1)*cos(lat2)*cos(lon1-lon2))</b>
     /// </summary>
-    /// <param name="other"></param>
-    /// <returns></returns>
+    /// <param name="other">Other point to measure the distance to.</param>
+    /// <returns>The distance in degrees.</returns>
     public double DistDegrees(GpsCoordinates other) {
         return DistRadians(other).RadiansToDegrees();
     }
 
+    /// <summary>
+    /// Distance between two geological points given in radians.
+    ///
+    /// Derived from: https://edwilliams.org/avform147.htm#Dist
+    ///
+    /// Formula: <b>d=acos(sin(lat1)*sin(lat2)+cos(lat1)*cos(lat2)*cos(lon1-lon2))</b>
+    /// </summary>
+    /// <param name="other">Other point to measure the distance to.</param>
+    /// <returns>The distance in radians.</returns>
     public double DistRadians(GpsCoordinates other) {
         return Math.Acos(
             Math.Sin(LatitudeRad)*
@@ -61,10 +72,24 @@ public class GpsCoordinates {
         );
     }
 
+    /// <summary>
+    /// Distance between two geological points given in kilometers.
+    ///
+    /// Equal to the radian distance multiplied by the earth's radius <see cref="EarthRadiusKm"/>
+    /// </summary>
+    /// <param name="other">Other point to measure the distance to.</param>
+    /// <returns>The distance in kilometers.</returns>
     public double DistKm(GpsCoordinates other) {
         return DistRadians(other) * EarthRadiusKm;
     }
 
+    /// <summary>
+    /// Sum up the distances between a series of geological points in degrees.
+    /// In other words, the result will be the distance between point 1 and point 2,
+    /// plus the distance between point 2 and point 3, etc...
+    /// </summary>
+    /// <param name="coords">The coordinates to measure.</param>
+    /// <returns>The summed distance in degrees.</returns>
     public static double ChainDistDegrees(params GpsCoordinates[] coords) {
         if (coords.Length < 2) return 0;
 
@@ -76,7 +101,14 @@ public class GpsCoordinates {
         
         return totalDist;
     }
-
+    
+    /// <summary>
+    /// Sum up the distances between a series of geological points in kilometers.
+    /// In other words, the result will be the distance between point 1 and point 2,
+    /// plus the distance between point 2 and point 3, etc...
+    /// </summary>
+    /// <param name="coords">The coordinates to measure.</param>
+    /// <returns>The summed distance in kilometers.</returns>
     public static double ChainDistKm(params GpsCoordinates[] coords) {
         if (coords.Length < 2) return 0;
 

@@ -2,8 +2,12 @@
 
 namespace FlySimulatorAPI.Models.Plane.Types;
 
-public class AmphibiousPlane(string modelName, double baseWeight, EngineParameters engineParams)
-    : EnginePoweredPlane(modelName, baseWeight, engineParams) {
+public class AmphibiousPlane : EnginePoweredPlane {
 
+    public AmphibiousPlane() { }
+
+    public AmphibiousPlane(string modelName, double baseWeight, EngineParameters engineParams)
+        : base(modelName, baseWeight, engineParams) { }
+    
     public override PlaneType Type => PlaneType.Amphibious;
 }

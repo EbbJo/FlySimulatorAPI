@@ -1,3 +1,5 @@
+using FlySimulatorAPI.Models.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,5 +12,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment()) {
     app.MapOpenApi();
 }
+
+SeedData.EnsurePopulated();
 
 app.Run();

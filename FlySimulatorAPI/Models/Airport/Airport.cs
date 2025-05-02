@@ -3,13 +3,18 @@ using FlySimulatorAPI.Common;
 
 namespace FlySimulatorAPI.Models.Airport;
 
+[Serializable]
 public class Airport {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     [Required]
     public string Name { get; set; } = string.Empty;
 
     [Required]
     public GpsCoordinates Position { get; set; } = new();
+    
+    public Airport() {
+        Id = new Guid();
+    }
 }

@@ -3,6 +3,7 @@ using FlySimulatorAPI.Models.Engine;
 
 namespace FlySimulatorAPI.Models.Plane.Types;
 
+[Serializable]
 public class MilitaryPlane : EnginePoweredPlane, IPeopleCarrying, ICargoCarrying {
     
     public override PlaneType Type => PlaneType.Military;

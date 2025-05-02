@@ -2,6 +2,7 @@
 
 namespace FlySimulatorAPI.Models.Engine;
 
+[Serializable]
 public class EngineParameters {
     /// <summary>
     /// Liters

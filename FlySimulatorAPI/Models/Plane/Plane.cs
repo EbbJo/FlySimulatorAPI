@@ -5,7 +5,7 @@ namespace FlySimulatorAPI.Models.Plane;
 
 public abstract class Plane {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     public virtual PlaneType Type => PlaneType.None;
 
@@ -17,10 +17,12 @@ public abstract class Plane {
     
     [Required]
     public string ModelName { get; set; } = string.Empty;
-    
-    public Plane() {}
 
-    protected Plane(string modelName, double baseWeight) {
+    protected Plane() {
+        Id = Guid.NewGuid();
+    }
+
+    protected Plane(string modelName, double baseWeight) : this() {
         ModelName = modelName;
         BaseWeight = baseWeight;
     }

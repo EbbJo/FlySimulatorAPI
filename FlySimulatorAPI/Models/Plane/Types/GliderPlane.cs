@@ -1,5 +1,6 @@
 ﻿namespace FlySimulatorAPI.Models.Plane.Types;
 
+[Serializable]
 public class GliderPlane : Plane {
     
     public GliderPlane() { }

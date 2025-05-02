@@ -2,9 +2,10 @@
 
 namespace FlySimulatorAPI.Models.Employee;
 
+[Serializable]
 public class Employee {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [Required]
     public string Name { get; set; } = string.Empty;
@@ -14,4 +15,8 @@ public class Employee {
 
     [Required]
     public decimal Salary { get; set; }
+
+    public Employee() {
+        Id = Guid.NewGuid();
+    }
 }

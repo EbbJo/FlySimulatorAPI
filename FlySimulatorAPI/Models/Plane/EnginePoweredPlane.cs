@@ -6,7 +6,8 @@ namespace FlySimulatorAPI.Models.Plane;
 
 public abstract class EnginePoweredPlane : Plane {
 
-    [Required] public EngineParameters EngineParams { get; set; } = new();
+    [Required]
+    public EngineParameters EngineParams { get; set; } = new();
 
     protected EnginePoweredPlane() { }
     

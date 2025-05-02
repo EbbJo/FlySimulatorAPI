@@ -2,6 +2,7 @@
 
 namespace FlySimulatorAPI.Models.Plane.Types;
 
+[Serializable]
 public class AmphibiousPlane : EnginePoweredPlane {
 
     public AmphibiousPlane() { }

@@ -1,35 +1,34 @@
-﻿using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using FlySimulatorAPI.Common;
 using FlySimulatorAPI.Models.Engine;
 using FlySimulatorAPI.Models.Plane.Types;
 
-namespace FlySimulatorAPI.Models.Repository;
+namespace FlySimulatorAPI.Models.Repository.Xml;
 
 public static class SeedData {
     public static void EnsurePopulated() {
-        if (!File.Exists("Files/planes.xml")) {
-            var list = GeneratePlanes();
+        if (!Directory.Exists("Files")) {
             try {
-                ProduceXml(list, "Files/planes.xml");
+                Directory.CreateDirectory("Files");
             }
             catch (Exception ex) {
-                throw;  //Console.WriteLine(ex.Message);
+                Console.WriteLine("Unable to create Files directory: "+ex.Message);
+                return;
+            }
+        }
+        
+        if (!File.Exists(PlaneXmlRepository.XmlPath)) {
+            var list = GeneratePlanes();
+            try {
+                new XmlMediator<XmlPlaneList>().ProduceXml(list, PlaneXmlRepository.XmlPath);
+            }
+            catch (Exception ex) {
+                Console.WriteLine("Unable to generate planes list: "+ex.Message);
             }
         }
     }
 
-    private static void ProduceXml(object obj, string path) {
-        var xmlSerializer = new XmlSerializer(obj.GetType());
-
-        using var writer = new StringWriter();
-        
-        xmlSerializer.Serialize(writer, obj);
-        File.WriteAllText(path, writer.ToString()); //Possible exception caught by caller
-    }
-
-    private static PlaneList GeneratePlanes() {
-        return new PlaneList {
+    private static XmlPlaneList GeneratePlanes() {
+        return new XmlPlaneList {
             AirLinerPlanes = [
                 new AirLinerPlane(
                     "Boeing 737-800",
@@ -139,6 +138,37 @@ public static class SeedData {
                     200,
                     18000d
                 )
+            ]
+        };
+    }
+
+    private static XmlAirportList GenerateAirPorts() {
+        return new XmlAirportList {
+            Airports = [
+                new Airport.Airport {
+                    Name = "Hartsfield–Jackson Atlanta International Airport",
+                    Position = new GpsCoordinates(33.6407, -84.4277)
+                },
+                new Airport.Airport {
+                    Name = "Beijing Capital International Airport",
+                    Position = new GpsCoordinates(40.0799, 116.6031)
+                },
+                new Airport.Airport {
+                    Name = "Dubai International Airport",
+                    Position = new GpsCoordinates(25.2532, 55.3657)
+                },
+                new Airport.Airport {
+                    Name = "Los Angeles International Airport",
+                    Position = new GpsCoordinates(33.9416, -118.4085)
+                },
+                new Airport.Airport {
+                    Name = "Heathrow Airport",
+                    Position = new GpsCoordinates(51.4700, -0.4543)
+                },
+                new Airport.Airport {
+                    Name = "Tokyo Haneda Airport",
+                    Position = new GpsCoordinates(35.5494, 139.7798)
+                }
             ]
         };
     }

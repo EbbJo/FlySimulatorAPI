@@ -13,7 +13,7 @@ public abstract class XmlRepository<T> : IRepository<T> {
         _xmlPath = xmlPath;
     }
 
-    public abstract void Add(T obj);
+    public abstract void Add(T employee);
 
     public abstract T? GetById(Guid id);
     

@@ -4,5 +4,12 @@ public enum EmployeeType {
     None,
     Pilot,
     FlightAttendant,
-    Mechanic
+    Mechanic,
+    GroundCrew,
+    CustomerService,
+    CargoHandler,
+    Navigator,
+    Security,
+    Dispatcher,
+    MaintenanceSupervisor
 }

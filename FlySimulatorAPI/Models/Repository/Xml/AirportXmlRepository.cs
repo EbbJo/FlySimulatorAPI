@@ -1,27 +1,27 @@
 ﻿
 namespace FlySimulatorAPI.Models.Repository.Xml;
 
-public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
-    public const string XmlPath = "Files/planes.xml";
+public class AirportXmlRepository : XmlRepository<Airport.Airport> {
+    public const string XmlPath = "Files/airports.xml";
     
-    private readonly IXmlMediator<XmlPlaneList> _listMediator;
+    private readonly IXmlMediator<XmlAirportList> _listMediator;
 
-    public PlaneXmlRepository(IXmlMediator<XmlPlaneList> listMediator)
+    public AirportXmlRepository(IXmlMediator<XmlAirportList> listMediator)
         : base(XmlPath) {
         _listMediator = listMediator;
     }
     
-    public override void Add(Plane.Plane employee) {
+    public override void Add(Airport.Airport airport) {
         UpdateList();
 
         var list = GetList();
         
-        list.Add(employee);
+        list.Add(airport);
         
         SetList(list);
     }
 
-    public override Plane.Plane? GetById(Guid id) {
+    public override Airport.Airport? GetById(Guid id) {
         UpdateList();
         
         var list = GetList();
@@ -29,7 +29,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         return list.FirstOrDefault(obj => obj.Id == id);
     }
 
-    public override List<Plane.Plane> GetAll() {
+    public override List<Airport.Airport> GetAll() {
         UpdateList();
 
         return GetList();
@@ -38,7 +38,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
     public override void SaveChanges() {
         if (XmlList is null) return;
         
-        _listMediator.ProduceXml((XmlPlaneList)XmlList, XmlPath);
+        _listMediator.ProduceXml((XmlAirportList)XmlList, XmlPath);
     }
 
     public override void Delete(Guid id) {
@@ -46,7 +46,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         
         var list = GetList();
         
-        list.RemoveAll(plane => plane.Id == id);
+        list.RemoveAll(airport => airport.Id == id);
     }
 
     protected override void UpdateList() {

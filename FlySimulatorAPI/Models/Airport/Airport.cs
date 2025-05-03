@@ -15,6 +15,6 @@ public class Airport {
     public GpsCoordinates Position { get; set; } = new();
     
     public Airport() {
-        Id = new Guid();
+        Id = Guid.NewGuid();
     }
 }

@@ -1,17 +1,17 @@
 ﻿
 namespace FlySimulatorAPI.Models.Repository.Xml;
 
-public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
-    public const string XmlPath = "Files/planes.xml";
+public class EmployeeXmlRepository : XmlRepository<Employee.Employee> {
+    public const string XmlPath = "Files/employees.xml";
     
-    private readonly IXmlMediator<XmlPlaneList> _listMediator;
+    private readonly IXmlMediator<XmlEmployeeList> _listMediator;
 
-    public PlaneXmlRepository(IXmlMediator<XmlPlaneList> listMediator)
+    public EmployeeXmlRepository(IXmlMediator<XmlEmployeeList> listMediator)
         : base(XmlPath) {
         _listMediator = listMediator;
     }
     
-    public override void Add(Plane.Plane employee) {
+    public override void Add(Employee.Employee employee) {
         UpdateList();
 
         var list = GetList();
@@ -21,7 +21,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         SetList(list);
     }
 
-    public override Plane.Plane? GetById(Guid id) {
+    public override Employee.Employee? GetById(Guid id) {
         UpdateList();
         
         var list = GetList();
@@ -29,7 +29,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         return list.FirstOrDefault(obj => obj.Id == id);
     }
 
-    public override List<Plane.Plane> GetAll() {
+    public override List<Employee.Employee> GetAll() {
         UpdateList();
 
         return GetList();
@@ -38,7 +38,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
     public override void SaveChanges() {
         if (XmlList is null) return;
         
-        _listMediator.ProduceXml((XmlPlaneList)XmlList, XmlPath);
+        _listMediator.ProduceXml((XmlEmployeeList)XmlList, XmlPath);
     }
 
     public override void Delete(Guid id) {
@@ -46,7 +46,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         
         var list = GetList();
         
-        list.RemoveAll(plane => plane.Id == id);
+        list.RemoveAll(employee => employee.Id == id);
     }
 
     protected override void UpdateList() {

@@ -1,7 +1,7 @@
 ﻿namespace FlySimulatorAPI.Models.Repository;
 
 public interface IRepository<T> {
-    public void Add(T obj);
+    public void Add(T employee);
 
     public T? GetById(Guid id);
     

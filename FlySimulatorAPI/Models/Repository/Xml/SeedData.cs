@@ -1,4 +1,5 @@
 ﻿using FlySimulatorAPI.Common;
+using FlySimulatorAPI.Models.Employee;
 using FlySimulatorAPI.Models.Engine;
 using FlySimulatorAPI.Models.Plane.Types;
 
@@ -23,6 +24,26 @@ public static class SeedData {
             }
             catch (Exception ex) {
                 Console.WriteLine("Unable to generate planes list: "+ex.Message);
+            }
+        }
+        
+        if (!File.Exists(AirportXmlRepository.XmlPath)) {
+            var list = GenerateAirports();
+            try {
+                new XmlMediator<XmlAirportList>().ProduceXml(list, AirportXmlRepository.XmlPath);
+            }
+            catch (Exception ex) {
+                Console.WriteLine("Unable to generate airports list: "+ex.Message);
+            }
+        }
+        
+        if (!File.Exists(EmployeeXmlRepository.XmlPath)) {
+            var list = GenerateEmployees();
+            try {
+                new XmlMediator<XmlEmployeeList>().ProduceXml(list, EmployeeXmlRepository.XmlPath);
+            }
+            catch (Exception ex) {
+                Console.WriteLine("Unable to generate employee list: "+ex.Message);
             }
         }
     }
@@ -142,7 +163,7 @@ public static class SeedData {
         };
     }
 
-    private static XmlAirportList GenerateAirPorts() {
+    private static XmlAirportList GenerateAirports() {
         return new XmlAirportList {
             Airports = [
                 new Airport.Airport {
@@ -168,6 +189,63 @@ public static class SeedData {
                 new Airport.Airport {
                     Name = "Tokyo Haneda Airport",
                     Position = new GpsCoordinates(35.5494, 139.7798)
+                }
+            ]
+        };
+    }
+
+    private static XmlEmployeeList GenerateEmployees() {
+        return new XmlEmployeeList {
+            Employees = [
+                new Employee.Employee {
+                    Name = "Alice Johnson",
+                    Type = EmployeeType.Pilot,
+                    Salary = 120_000m
+                },
+                new Employee.Employee {
+                    Name = "Michael Lee",
+                    Type = EmployeeType.GroundCrew,
+                    Salary = 45_000m
+                },
+                new Employee.Employee {
+                    Name = "Sandra Kim",
+                    Type = EmployeeType.FlightAttendant,
+                    Salary = 52_000m
+                },
+                new Employee.Employee {
+                    Name = "David Garcia",
+                    Type = EmployeeType.Mechanic,
+                    Salary = 65_000m
+                },
+                new Employee.Employee {
+                    Name = "Rachel Patel",
+                    Type = EmployeeType.CustomerService,
+                    Salary = 38_000m
+                },
+                new Employee.Employee {
+                    Name = "James O'Connor",
+                    Type = EmployeeType.CargoHandler,
+                    Salary = 42_000m
+                },
+                new Employee.Employee {
+                    Name = "Emily Chen",
+                    Type = EmployeeType.Navigator,
+                    Salary = 78_000m
+                },
+                new Employee.Employee {
+                    Name = "Robert Martinez",
+                    Type = EmployeeType.Security,
+                    Salary = 40_000m
+                },
+                new Employee.Employee {
+                    Name = "Natalie Brooks",
+                    Type = EmployeeType.Dispatcher,
+                    Salary = 55_000m
+                },
+                new Employee.Employee {
+                    Name = "Tom Nguyen",
+                    Type = EmployeeType.MaintenanceSupervisor,
+                    Salary = 70_000m
                 }
             ]
         };

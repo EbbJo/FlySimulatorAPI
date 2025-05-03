@@ -1,5 +1,4 @@
-﻿using FlySimulatorAPI.Models.Plane.Types;
-
+﻿
 namespace FlySimulatorAPI.Models.Repository.Xml;
 
 public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
@@ -13,7 +12,7 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
     }
     
     public override void Add(Plane.Plane plane) {
-        Update();
+        UpdateList();
 
         var list = GetList();
         
@@ -22,32 +21,35 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         SetList(list);
     }
 
+    public override Plane.Plane? GetById(Guid id) {
+        UpdateList();
+        
+        var list = GetList();
+        
+        return list.FirstOrDefault(obj => obj.Id == id);
+    }
+
     public override List<Plane.Plane> GetAll() {
-        Update();
+        UpdateList();
 
         return GetList();
     }
 
     public override void SaveChanges() {
-        if (_xmlList is null) return;
+        if (XmlList is null) return;
         
-        _listMediator.ProduceXml((XmlPlaneList)_xmlList, XmlPath);
+        _listMediator.ProduceXml((XmlPlaneList)XmlList, XmlPath);
     }
 
-    public override void Delete(Plane.Plane obj) {
-        Update();
+    public override void Delete(Guid id) {
+        UpdateList();
         
         var list = GetList();
         
-        list.RemoveAll(plane => plane.Id == obj.Id);
+        list.RemoveAll(plane => plane.Id == id);
     }
 
     protected override void UpdateList() {
-        _xmlList = _listMediator.ReadXml(_xmlPath);
-    }
-
-    //Get the latest version of the xml document with the list.
-    private void Update() {
-        _xmlList = _listMediator.ReadXml(_xmlPath);
+        XmlList = _listMediator.ReadXml(_xmlPath);
     }
 }

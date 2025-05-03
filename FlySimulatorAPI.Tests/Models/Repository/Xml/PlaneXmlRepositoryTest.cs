@@ -53,6 +53,6 @@ public class PlaneXmlRepositoryTest {
 
         //Assert
         
-        Assert.Equal(list.Count, 2);
+        Assert.Equal(2, list.Count);
     }
 }

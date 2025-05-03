@@ -5,7 +5,13 @@ using FlySimulatorAPI.Models.Plane.Types;
 
 namespace FlySimulatorAPI.Models.Repository.Xml;
 
+/// <summary>
+/// Methods to ensure the XML repositories have data in them.
+/// </summary>
 public static class SeedData {
+    /// <summary>
+    /// Ensure the XML repositories have data.
+    /// </summary>
     public static void EnsurePopulated() {
         if (!Directory.Exists("Files")) {
             try {

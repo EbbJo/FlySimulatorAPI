@@ -11,12 +11,12 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         _listMediator = listMediator;
     }
     
-    public override void Add(Plane.Plane employee) {
+    public override void Add(Plane.Plane plane) {
         UpdateList();
 
         var list = GetList();
         
-        list.Add(employee);
+        list.Add(plane);
         
         SetList(list);
     }

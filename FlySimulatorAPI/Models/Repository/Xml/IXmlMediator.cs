@@ -1,5 +1,9 @@
 ﻿namespace FlySimulatorAPI.Models.Repository.Xml;
 
+/// <summary>
+/// Defines methods to help convert an object to and from an XML file.
+/// </summary>
+/// <typeparam name="T">Type of object to serialize/deserialize.</typeparam>
 public interface IXmlMediator<T> where T : class, new() {
     /// <summary>
     /// Write an xml-serialized version of the object to an .xml file.

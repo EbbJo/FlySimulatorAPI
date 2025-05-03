@@ -49,10 +49,12 @@ public class PlaneXmlRepositoryTest {
 
         //Act
         
+        //Use the "GetAll" method to produce a list it will gather from the XmlMediator.
         var list = repo.GetAll();
 
         //Assert
         
+        //Make sure no information was lost/added from simply constructing the list.
         Assert.Equal(2, list.Count);
     }
 }

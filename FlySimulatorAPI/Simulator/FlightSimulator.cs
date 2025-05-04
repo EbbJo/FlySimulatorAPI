@@ -6,36 +6,54 @@ using FlySimulatorAPI.Models.Repository;
 
 namespace FlySimulatorAPI.Simulator;
 
-public class FlightSimulator : IFlightSimulator {
-    private IRepository<Plane> _planeRepository;
-    private IRepository<Employee> _employeeRepository;
-    private IRepository<Airport> _airportRepository;
-
-    public FlightSimulator(IRepository<Plane> planeRepository, IRepository<Employee> employeeRepository,
-        IRepository<Airport> airportRepository) {
-        _planeRepository = planeRepository;
-        _employeeRepository = employeeRepository;
-        _airportRepository = airportRepository;
-    }
+/// <summary>
+/// Simulates flights.
+/// </summary>
+/// <param name="planeRepository">Repository of planes (dependency injected).</param>
+/// <param name="employeeRepository">Repository of employees (dependency injected).</param>
+/// <param name="airportRepository">Repository of airports (dependency injected).</param>
+public class FlightSimulator(
+    IRepository<Plane> planeRepository,
+    IRepository<Employee> employeeRepository,
+    IRepository<Airport> airportRepository)
+    : IFlightSimulationService {
     
     public FlightSimulationResult SimulateFlight(FlightSimulationSetup setup) {
         //We need at least two points to move between in order to simulate a flight.
         if (setup.AirportRoute.Length < 2)
-            throw new Exception("The airport route must have at least 2 points.");
+            throw new ArgumentException("The airport route must have at least 2 points.");
         
         //Get plane
-        Plane? plane = _planeRepository.GetById(setup.Plane);
+        var plane = planeRepository.GetById(setup.Plane);
         if (plane == null)
-            throw new Exception($"Plane {setup.Plane} does not exist.");
+            throw new ArgumentException($"Plane {setup.Plane} does not exist.");
+        
+        //Check that the plane can carry the passengers
+        if (setup.PassengerCount > 0) {
+            if (plane is not IPeopleCarrying carrying)
+                throw new ArgumentException($"Plane {setup.Plane} is not of a type that carries passengers.");
 
+            if (carrying.PassengerCapacity < setup.PassengerCount)
+                throw new ArgumentException($"Plane {setup.Plane} can only carry {carrying.PassengerCapacity} passengers.");
+        }
+        
+        //Check that the plane can carry the cargo
+        if (setup.CargoWeight > 0d) {
+            if (plane is not ICargoCarrying carrying)
+                throw new ArgumentException($"Plane {setup.Plane} is not of a type that carries cargo.");
+            
+            if (carrying.CargoWeightCapacity < setup.CargoWeight)
+                throw new ArgumentException($"Plane {setup.Plane} can only carry {carrying.CargoWeightCapacity}kg of cargo.");
+        }
+        
         //Get employees
         List<Employee> employees = new(setup.Employees.Length);
 
         foreach (var id in setup.Employees) {
-            Employee? employee = _employeeRepository.GetById(id);
+            var employee = employeeRepository.GetById(id);
 
             if (employee == null)
-                throw new Exception($"Employee {id} does not exist.");
+                throw new ArgumentException($"Employee {id} does not exist.");
             
             employees.Add(employee);
         }
@@ -44,10 +62,10 @@ public class FlightSimulator : IFlightSimulator {
         List<Airport> airports = new(setup.AirportRoute.Length);
         
         foreach (var id in setup.AirportRoute) {
-            Airport? airport = _airportRepository.GetById(id);
+            var airport = airportRepository.GetById(id);
 
             if (airport == null)
-                throw new Exception($"Airport {id} does not exist.");
+                throw new ArgumentException($"Airport {id} does not exist.");
             
             airports.Add(airport);
         }
@@ -55,25 +73,28 @@ public class FlightSimulator : IFlightSimulator {
         return SimulateFlight(plane, employees, airports);
     }
 
+    /// <summary>
+    /// Simulate a flight with the given parameters.
+    /// </summary>
+    /// <param name="plane">The plane that will be flying.</param>
+    /// <param name="employees">The employees involved with the flight.</param>
+    /// <param name="airports">The list of airports to fly between (in order).</param>
+    /// <returns>The result of the simulation.</returns>
     public static FlightSimulationResult SimulateFlight(Plane plane, List<Employee> employees, List<Airport> airports) {
         //Get the geo points for the route
         var points = airports.Select(airport => airport.Position).ToArray();
 
         //Calculate the total distance of the flight
         double distance = GpsCoordinates.ChainDistKm(points);
-        Console.WriteLine(distance);
 
         //Calculate time (we just assume top speed throughout the whole thing)
         double flightTime = distance / plane.TopSpeed;
-        Console.WriteLine(flightTime);
         
         //Calculate fuel consumption
         double fuelConsumption = plane.FuelOverDistance(distance);
-        Console.WriteLine(fuelConsumption);
         
         //Calculate staff cost
         decimal staffCost = employees.Sum(employee => employee.Salary * (decimal)flightTime);
-        Console.WriteLine(staffCost);
         
         return new FlightSimulationResult {
             Distance = distance,

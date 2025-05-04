@@ -32,11 +32,10 @@ builder.Services.AddScoped<IXmlMediator<XmlEmployeeList>, XmlMediator<XmlEmploye
 builder.Services.AddScoped<IRepository<Employee>, EmployeeXmlRepository>();
 
 //Flight simulator
-builder.Services.AddScoped<IFlightSimulator, FlightSimulator>();
+builder.Services.AddScoped<IFlightSimulationService, FlightSimulator>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.MapOpenApi();
 }

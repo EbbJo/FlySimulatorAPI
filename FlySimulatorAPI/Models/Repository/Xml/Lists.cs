@@ -60,9 +60,7 @@ public class XmlPlaneList : IXmlObjectList<Plane.Plane> {
 [Serializable]
 public class XmlAirportList : IXmlObjectList<Airport.Airport> {
     public int Length => Airports.Length;
-    public List<Airport.Airport> GetList() {
-        return Airports.ToList();
-    }
+    public List<Airport.Airport> GetList() => Airports.ToList();
 
     public void SetList(List<Airport.Airport> list) {
         Airports = list.ToArray();
@@ -75,9 +73,7 @@ public class XmlAirportList : IXmlObjectList<Airport.Airport> {
 public class XmlEmployeeList : IXmlObjectList<Employee.Employee> {
     public int Length => Employees.Length;
     
-    public List<Employee.Employee> GetList() {
-        return Employees.ToList();
-    }
+    public List<Employee.Employee> GetList() => Employees.ToList();
 
     public void SetList(List<Employee.Employee> list) {
         Employees = list.ToArray();

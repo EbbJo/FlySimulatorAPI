@@ -44,14 +44,17 @@ public static class Endpoints {
         return Task.FromResult<IResult>(TypedResults.Ok(list));
     }
 
-    private static Task<IResult> SimulateFlight(IFlightSimulator simulator, [FromBody] FlightSimulationSetup setup) {
+    private static Task<IResult> SimulateFlight(IFlightSimulationService simulator, [FromBody] FlightSimulationSetup setup) {
         try {
             Console.WriteLine(setup);
             var result = simulator.SimulateFlight(setup);
             return Task.FromResult<IResult>(TypedResults.Ok(result));
         }
-        catch (Exception e) {
+        catch (ArgumentException e) {
             return Task.FromResult<IResult>(TypedResults.BadRequest(e.Message));
+        }
+        catch (Exception e) {
+            return Task.FromResult<IResult>(TypedResults.InternalServerError(e.Message));
         }
     }
 }

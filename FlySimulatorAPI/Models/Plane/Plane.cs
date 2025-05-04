@@ -10,16 +10,19 @@ public abstract class Plane {
     public virtual PlaneType Type => PlaneType.None;
 
     /// <summary>
-    /// The weight of the plane with no cargo/passengers.
+    /// The weight (kg) of the plane with no cargo/passengers.
     /// </summary>
     [Required]
     public double BaseWeight { get; set; } = 0d;
     
+    /// <summary>
+    /// Name of this model of plane.
+    /// </summary>
     [Required]
     public string ModelName { get; set; } = string.Empty;
     
     /// <summary>
-    /// Km/h
+    /// Top speed (kilometers per hour).
     /// </summary>
     [Required]
     public double TopSpeed { get; set; } = 0d;
@@ -34,10 +37,21 @@ public abstract class Plane {
         TopSpeed = topSpeed;
     }
 
+    /// <summary>
+    /// Get the amount of fuel (liters) used over a given distance (km).
+    /// </summary>
+    /// <param name="km">Distance in kilometers.</param>
+    /// <returns>Amount of fuel used in liters.</returns>
     public virtual double FuelOverDistance(double km) {
         return 0d;
     }
 
+    /// <summary>
+    /// Get the amount of fuel (liters) used over the summed-up distance between
+    /// a chain of coordinates.
+    /// </summary>
+    /// <param name="coords">Coordinates the flight will be chained through.</param>
+    /// <returns>Amount of fuel used in liters.</returns>
     public virtual double FuelOverDistance(params GpsCoordinates[] coords) {
         return 0d;
     }

@@ -3,6 +3,9 @@
 namespace FlySimulatorAPI.Models.Plane;
 
 public interface IPeopleCarrying {
+    /// <summary>
+    /// Amount of passengers this plane can hold.
+    /// </summary>
     [Required]
     public uint PassengerCapacity { get; set; }
 

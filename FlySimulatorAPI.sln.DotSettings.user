@@ -1,4 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AToCollection_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003Febbe2_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F439c4ee753b23e743cc14119593bc889751f9eb0b38997577d8e4c47c4fed_003FToCollection_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AWhere_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003Febbe2_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003Fa01438ba566562f50e41665fc39d16b767aa0649122f35b3ed84cc8957d17_003FWhere_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=E56F932E_002D61CF_002D491B_002DB46E_002D1D22E850F8F2/@EntryIndexedValue">86A9E6AD-0D0E-4BFD-BB9D-92D8F10003A0</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3eb0706f_002Df8cb_002D4466_002Dbd08_002D7950f1c9e219/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DistKm_TwoPoints_ExpectedValue" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
@@ -6,6 +8,7 @@
     &lt;ProjectFile&gt;86A9E6AD-0D0E-4BFD-BB9D-92D8F10003A0/d:Common/f:GpsCoordinatesTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
       &lt;TestId&gt;xUnit::86A9E6AD-0D0E-4BFD-BB9D-92D8F10003A0::net9.0::FlySimulatorAPI.Tests.Models.Repository.Xml.PlaneXmlRepositoryTest.GetPlanes_TwoPlanes_MaintainsCount&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::86A9E6AD-0D0E-4BFD-BB9D-92D8F10003A0::net9.0::FlySimulatorAPI.Tests.Models.Repository.Xml.PlaneXmlRepositoryTest.GetPlanes_TwoPlanes_IsThreeAfterAdd&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>

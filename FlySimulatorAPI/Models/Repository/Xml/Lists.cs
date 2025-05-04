@@ -1,4 +1,5 @@
-﻿using FlySimulatorAPI.Models.Plane.Types;
+﻿using System.Text;
+using FlySimulatorAPI.Models.Plane.Types;
 
 namespace FlySimulatorAPI.Models.Repository.Xml;
 
@@ -50,10 +51,24 @@ public class XmlPlaneList : IXmlObjectList<Plane.Plane> {
     }
 
     public void SetList(List<Plane.Plane> list) {
-        AirLinerPlanes   = (list.Where(p => p is AirLinerPlane  ).ToArray() as AirLinerPlane[]  )!;
-        AmphibiousPlanes = (list.Where(p => p is AmphibiousPlane).ToArray() as AmphibiousPlane[])!;
-        GliderPlanes     = (list.Where(p => p is GliderPlane    ).ToArray() as GliderPlane[]    )!;
-        MilitaryPlanes   = (list.Where(p => p is MilitaryPlane  ).ToArray() as MilitaryPlane[]  )!;
+        AirLinerPlanes   = list.OfType<AirLinerPlane>().ToArray();
+        AmphibiousPlanes = list.OfType<AmphibiousPlane>().ToArray();
+        GliderPlanes     = list.OfType<GliderPlane>().ToArray();
+        MilitaryPlanes   = list.OfType<MilitaryPlane>().ToArray();
+    }
+
+    public override string ToString() {
+        if (Length == 0) return "Empty";
+
+        StringBuilder sb = new();
+        
+        var list = GetList();
+
+        foreach (var plane in list) {
+            sb.AppendLine(plane.ToString());
+        }
+        
+        return sb.ToString();
     }
 }
 
@@ -67,6 +82,10 @@ public class XmlAirportList : IXmlObjectList<Airport.Airport> {
     }
 
     public Airport.Airport[] Airports { get; set; } = [];
+
+    public override string ToString() {
+        return GetList().ToString() ?? "Empty";
+    }
 }
 
 [Serializable]
@@ -80,4 +99,8 @@ public class XmlEmployeeList : IXmlObjectList<Employee.Employee> {
     }
 
     public Employee.Employee[] Employees { get; set; } = [];
+
+    public override string ToString() {
+        return GetList().ToString() ?? "Empty";
+    }
 }

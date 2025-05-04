@@ -50,6 +50,6 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
     }
 
     protected override void UpdateList() {
-        XmlList = _listMediator.ReadXml(_xmlPath);
+        XmlList = _listMediator.ReadXml(XmlPath);
     }
 }

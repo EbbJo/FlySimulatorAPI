@@ -14,7 +14,7 @@ public class Employee {
     public EmployeeType Type { get; set; } = EmployeeType.None;
 
     /// <summary>
-    /// Dollars/Year
+    /// Dollars/Hour
     /// </summary>
     [Required]
     public decimal Salary { get; set; }

@@ -22,6 +22,7 @@ public class PlaneXmlRepositoryTest {
                     new AirLinerPlane(
                         "Boeing 737-800",
                         41413d,
+                        876d,
                         new EngineParameters {
                             FuelCapacity = 26020d,
                             FuelEfficiency = 0.08d
@@ -35,6 +36,7 @@ public class PlaneXmlRepositoryTest {
                     new AmphibiousPlane(
                         "Canadair CL-415",
                         12500d,
+                        359d,
                         new EngineParameters {
                             FuelCapacity = 7200d,
                             FuelEfficiency = 0.07d

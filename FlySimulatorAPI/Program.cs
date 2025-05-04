@@ -4,6 +4,7 @@ using FlySimulatorAPI.Models.Employee;
 using FlySimulatorAPI.Models.Plane;
 using FlySimulatorAPI.Models.Repository;
 using FlySimulatorAPI.Models.Repository.Xml;
+using FlySimulatorAPI.Simulator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,9 @@ builder.Services.AddScoped<IRepository<Airport>, AirportXmlRepository>();
 //Employees
 builder.Services.AddScoped<IXmlMediator<XmlEmployeeList>, XmlMediator<XmlEmployeeList>>();
 builder.Services.AddScoped<IRepository<Employee>, EmployeeXmlRepository>();
+
+//Flight simulator
+builder.Services.AddScoped<IFlightSimulator, FlightSimulator>();
 
 var app = builder.Build();
 

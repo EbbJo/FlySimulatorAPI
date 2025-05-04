@@ -11,8 +11,8 @@ public abstract class EnginePoweredPlane : Plane {
 
     protected EnginePoweredPlane() { }
     
-    protected EnginePoweredPlane(string modelName, double baseWeight, EngineParameters engineParams)
-        : base(modelName, baseWeight) {
+    protected EnginePoweredPlane(string modelName, double baseWeight, double topSpeed, EngineParameters engineParams)
+        : base(modelName, baseWeight, topSpeed) {
         EngineParams = engineParams;
     }
     

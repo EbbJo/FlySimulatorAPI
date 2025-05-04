@@ -5,8 +5,8 @@ public class GliderPlane : Plane {
     
     public GliderPlane() { }
     
-    public GliderPlane(string modelName, double baseWeight)
-        : base(modelName, baseWeight) { }
+    public GliderPlane(string modelName, double baseWeight, double topSpeed)
+        : base(modelName, baseWeight, topSpeed) { }
     
     public override PlaneType Type => PlaneType.Glider;
 }

@@ -7,8 +7,8 @@ public class AmphibiousPlane : EnginePoweredPlane {
 
     public AmphibiousPlane() { }
 
-    public AmphibiousPlane(string modelName, double baseWeight, EngineParameters engineParams)
-        : base(modelName, baseWeight, engineParams) { }
+    public AmphibiousPlane(string modelName, double baseWeight, double topSpeed, EngineParameters engineParams)
+        : base(modelName, baseWeight, topSpeed, engineParams) { }
     
     public override PlaneType Type => PlaneType.Amphibious;
 }

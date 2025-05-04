@@ -2,6 +2,8 @@
 using FlySimulatorAPI.Models.Employee;
 using FlySimulatorAPI.Models.Plane;
 using FlySimulatorAPI.Models.Repository;
+using FlySimulatorAPI.Simulator;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FlySimulatorAPI;
 
@@ -19,6 +21,9 @@ public static class Endpoints {
         
         var employeeGroup = app.MapGroup("/employees");
         employeeGroup.MapGet("/", GetEmployees).WithSummary("Get all employees.");
+
+        var flightSimGroup = app.MapGroup("/flight");
+        flightSimGroup.MapPost("/", SimulateFlight).WithSummary("Simulate flight.");
     }
 
     private static Task<IResult> GetPlanes(IRepository<Plane> repo) {
@@ -37,5 +42,16 @@ public static class Endpoints {
         var list = repo.GetAll();
         
         return Task.FromResult<IResult>(TypedResults.Ok(list));
+    }
+
+    private static Task<IResult> SimulateFlight(IFlightSimulator simulator, [FromBody] FlightSimulationSetup setup) {
+        try {
+            Console.WriteLine(setup);
+            var result = simulator.SimulateFlight(setup);
+            return Task.FromResult<IResult>(TypedResults.Ok(result));
+        }
+        catch (Exception e) {
+            return Task.FromResult<IResult>(TypedResults.BadRequest(e.Message));
+        }
     }
 }

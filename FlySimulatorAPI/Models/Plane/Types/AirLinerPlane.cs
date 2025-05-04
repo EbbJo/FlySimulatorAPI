@@ -16,12 +16,12 @@ public class AirLinerPlane : EnginePoweredPlane, IPeopleCarrying, ICargoCarrying
 
     public AirLinerPlane() { }
     
-    public AirLinerPlane(string modelName, double baseWeight, EngineParameters engineParams)
-     : base(modelName, baseWeight, engineParams) { }
+    public AirLinerPlane(string modelName, double baseWeight, double topSpeed, EngineParameters engineParams)
+     : base(modelName, baseWeight, topSpeed, engineParams) { }
 
-    public AirLinerPlane(string modelName, double baseWeight, EngineParameters engineParams, uint passengerCapacity,
+    public AirLinerPlane(string modelName, double baseWeight, double topSpeed, EngineParameters engineParams, uint passengerCapacity,
         double fullPassengerCapacityWeightAddition, double cargoWeightCapacity)
-        : this(modelName, baseWeight, engineParams) {
+        : this(modelName, baseWeight, topSpeed, engineParams) {
         PassengerCapacity = passengerCapacity;
         FullPassengerCapacityWeightAddition = fullPassengerCapacityWeightAddition;
         CargoWeightCapacity = cargoWeightCapacity;

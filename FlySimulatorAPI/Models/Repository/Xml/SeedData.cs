@@ -60,6 +60,7 @@ public static class SeedData {
                 new AirLinerPlane(
                     "Boeing 737-800",
                     41413d,
+                    876d,
                     new EngineParameters {
                         FuelCapacity = 26020d,
                         FuelEfficiency = 0.08d
@@ -71,6 +72,7 @@ public static class SeedData {
                 new AirLinerPlane(
                     "Airbus A320neo",
                     42600d,
+                    871d,
                     new EngineParameters {
                         FuelCapacity = 24210d,
                         FuelEfficiency = 0.09d
@@ -82,6 +84,7 @@ public static class SeedData {
                 new AirLinerPlane(
                     "Embraer E190",
                     28900d,
+                    870d,
                     new EngineParameters {
                         FuelCapacity = 13000d,
                         FuelEfficiency = 0.1d
@@ -95,6 +98,7 @@ public static class SeedData {
                 new AmphibiousPlane(
                     "Canadair CL-415",
                     12500d,
+                    359d,
                     new EngineParameters {
                         FuelCapacity = 7200d,
                         FuelEfficiency = 0.07d
@@ -103,6 +107,7 @@ public static class SeedData {
                 new AmphibiousPlane(
                     "Grumman G-21 Goose",
                     3400d,
+                    346d,
                     new EngineParameters {
                         FuelCapacity = 1800d,
                         FuelEfficiency = 0.09d
@@ -111,6 +116,7 @@ public static class SeedData {
                 new AmphibiousPlane(
                     "ICON A5",
                     686d,
+                    176d,
                     new EngineParameters {
                         FuelCapacity = 87d,
                         FuelEfficiency = 0.2d
@@ -120,21 +126,25 @@ public static class SeedData {
             GliderPlanes = [
                 new GliderPlane(
                     "Schleicher ASW 27",
-                    290d
+                    290d,
+                    250d
                 ),
                 new GliderPlane(
                     "Schempp-Hirth Duo Discus",
-                    410d
+                    410d,
+                    263d
                 ),
                 new GliderPlane(
                     "DG Flugzeugbau DG-1001",
-                    510d
+                    510d,
+                    270d
                 )
             ],
             MilitaryPlanes = [
                 new MilitaryPlane(
                     "F-16 Fighting Falcon",
                     8840d,
+                    2400d,
                     new EngineParameters {
                         FuelCapacity = 3100d,
                         FuelEfficiency = 0.04d
@@ -146,6 +156,7 @@ public static class SeedData {
                 new MilitaryPlane(
                     "C-130 Hercules",
                     34400d,
+                    592d,
                     new EngineParameters {
                         FuelCapacity = 19000d,
                         FuelEfficiency = 0.06d
@@ -157,6 +168,7 @@ public static class SeedData {
                 new MilitaryPlane(
                     "B-2 Spirit",
                     71700d,
+                    1010d,
                     new EngineParameters {
                         FuelCapacity = 75000d,
                         FuelEfficiency = 0.03d
@@ -206,52 +218,52 @@ public static class SeedData {
                 new Employee.Employee {
                     Name = "Alice Johnson",
                     Type = EmployeeType.Pilot,
-                    Salary = 120_000m
+                    Salary = 85.00m // Dollars per hour
                 },
                 new Employee.Employee {
                     Name = "Michael Lee",
                     Type = EmployeeType.GroundCrew,
-                    Salary = 45_000m
+                    Salary = 21.50m
                 },
                 new Employee.Employee {
                     Name = "Sandra Kim",
                     Type = EmployeeType.FlightAttendant,
-                    Salary = 52_000m
+                    Salary = 25.00m
                 },
                 new Employee.Employee {
                     Name = "David Garcia",
                     Type = EmployeeType.Mechanic,
-                    Salary = 65_000m
+                    Salary = 31.25m
                 },
                 new Employee.Employee {
                     Name = "Rachel Patel",
                     Type = EmployeeType.CustomerService,
-                    Salary = 38_000m
+                    Salary = 18.25m
                 },
                 new Employee.Employee {
                     Name = "James O'Connor",
                     Type = EmployeeType.CargoHandler,
-                    Salary = 42_000m
+                    Salary = 20.00m
                 },
                 new Employee.Employee {
                     Name = "Emily Chen",
                     Type = EmployeeType.Navigator,
-                    Salary = 78_000m
+                    Salary = 40.00m
                 },
                 new Employee.Employee {
                     Name = "Robert Martinez",
                     Type = EmployeeType.Security,
-                    Salary = 40_000m
+                    Salary = 19.00m
                 },
                 new Employee.Employee {
                     Name = "Natalie Brooks",
                     Type = EmployeeType.Dispatcher,
-                    Salary = 55_000m
+                    Salary = 27.50m
                 },
                 new Employee.Employee {
                     Name = "Tom Nguyen",
                     Type = EmployeeType.MaintenanceSupervisor,
-                    Salary = 70_000m
+                    Salary = 33.75m
                 }
             ]
         };

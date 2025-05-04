@@ -17,14 +17,21 @@ public abstract class Plane {
     
     [Required]
     public string ModelName { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Km/h
+    /// </summary>
+    [Required]
+    public double TopSpeed { get; set; } = 0d;
 
     protected Plane() {
         Id = Guid.NewGuid();
     }
 
-    protected Plane(string modelName, double baseWeight) : this() {
+    protected Plane(string modelName, double baseWeight, double topSpeed) : this() {
         ModelName = modelName;
         BaseWeight = baseWeight;
+        TopSpeed = topSpeed;
     }
 
     public virtual double FuelOverDistance(double km) {

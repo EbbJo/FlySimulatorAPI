@@ -35,18 +35,36 @@ public class AirportXmlRepository : XmlRepository<Airport.Airport> {
         return GetList();
     }
 
-    public override void SaveChanges() {
-        if (XmlList is null) return;
-        
-        _listMediator.ProduceXml((XmlAirportList)XmlList, XmlPath);
-    }
-
     public override void Delete(Guid id) {
         UpdateList();
         
         var list = GetList();
         
         list.RemoveAll(airport => airport.Id == id);
+        
+        SetList(list);
+    }
+    
+    public override void Update(Guid id, Airport.Airport airport) {
+        UpdateList();
+        
+        var list = GetList();
+
+        var index = list.FindIndex(a => a.Id == id);
+
+        if (index == -1) return;
+        
+        airport.Id = list[index].Id;
+        
+        list[index] = airport;
+        
+        SetList(list);
+    }
+
+    public override void SaveChanges() {
+        if (XmlList is null) return;
+        
+        _listMediator.ProduceXml((XmlAirportList)XmlList, XmlPath);
     }
 
     protected override void UpdateList() {

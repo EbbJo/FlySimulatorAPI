@@ -26,9 +26,11 @@ public abstract class XmlRepository<T> : IRepository<T> {
     
     public abstract List<T> GetAll();
 
-    public abstract void SaveChanges();
-
     public abstract void Delete(Guid id);
+    
+    public abstract void Update(Guid id, T obj);
+
+    public abstract void SaveChanges();
 
     /// <summary>
     /// Get a list of objects in the repository.

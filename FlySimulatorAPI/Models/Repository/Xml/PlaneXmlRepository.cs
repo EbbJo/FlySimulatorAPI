@@ -35,18 +35,36 @@ public class PlaneXmlRepository : XmlRepository<Plane.Plane> {
         return GetList();
     }
 
-    public override void SaveChanges() {
-        if (XmlList is null) return;
-        
-        _listMediator.ProduceXml((XmlPlaneList)XmlList, XmlPath);
-    }
-
     public override void Delete(Guid id) {
         UpdateList();
         
         var list = GetList();
         
         list.RemoveAll(plane => plane.Id == id);
+        
+        SetList(list);
+    }
+
+    public override void Update(Guid id, Plane.Plane plane) {
+        UpdateList();
+        
+        var list = GetList();
+
+        var index = list.FindIndex(p => p.Id == id);
+
+        if (index == -1) return;
+        
+        plane.Id = list[index].Id;
+        
+        list[index] = plane;
+        
+        SetList(list);
+    }
+
+    public override void SaveChanges() {
+        if (XmlList is null) return;
+        
+        _listMediator.ProduceXml((XmlPlaneList)XmlList, XmlPath);
     }
 
     protected override void UpdateList() {

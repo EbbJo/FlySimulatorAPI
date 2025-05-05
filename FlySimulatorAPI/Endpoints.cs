@@ -14,8 +14,13 @@ namespace FlySimulatorAPI;
 /// </summary>
 public static class Endpoints {
     public static void MapEndpoints(this WebApplication app) {
-        //The multiple methods for different plane types is messy, but it's the best method I found to work,
-        //when dealing with multiple implementations of the same class over HTML requests.
+        /*
+         * The multiple methods for different plane types is messy, but it's the best method I found to work,
+         * when dealing with multiple implementations of the same class over HTML requests.
+         *
+         * I also did not design the databases to be asynchronous, so return values from request handlers
+         * are a bit awkward sometimes.
+         */
         
         /* PLANES */
         

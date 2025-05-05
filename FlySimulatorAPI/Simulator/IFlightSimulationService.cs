@@ -1,5 +1,8 @@
 ﻿namespace FlySimulatorAPI.Simulator;
 
+/// <summary>
+/// Simulates a flight from a given set of data.
+/// </summary>
 public interface IFlightSimulationService {
     /// <summary>
     /// Simulate a flight from the given setup parameters.

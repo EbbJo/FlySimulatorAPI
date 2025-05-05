@@ -36,17 +36,13 @@ public abstract class XmlRepository<T> : IRepository<T> {
     /// Get a list of objects in the repository.
     /// </summary>
     /// <returns>The list.</returns>
-    protected List<T> GetList() {
-        return XmlList is null ? [] : XmlList.GetList();
-    }
+    protected List<T> GetList() => XmlList is null ? [] : XmlList.GetList();
 
     /// <summary>
     /// Set the contents of the repository to the given list.
     /// </summary>
     /// <param name="list">The list that will be the new contents of the repository.</param>
-    protected void SetList(List<T> list) {
-        XmlList?.SetList(list);
-    }
+    protected void SetList(List<T> list) => XmlList?.SetList(list);
 
     /// <summary>
     /// Update the <see cref="XmlList"/> member to the latest version found in the xml file.

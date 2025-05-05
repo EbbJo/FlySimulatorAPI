@@ -40,6 +40,8 @@ public class XmlPlaneList : IXmlObjectList<Plane.Plane> {
     public MilitaryPlane[] MilitaryPlanes { get; set; } = [];
 
     public List<Plane.Plane> GetList() {
+        //The lists of different plane types are combined into one list.
+        
         var list = new List<Plane.Plane>(Length);
 
         list.AddRange(AirLinerPlanes);
@@ -51,6 +53,8 @@ public class XmlPlaneList : IXmlObjectList<Plane.Plane> {
     }
 
     public void SetList(List<Plane.Plane> list) {
+        //The list is filtered by plane type into their respective arrays.
+        
         AirLinerPlanes   = list.OfType<AirLinerPlane>().ToArray();
         AmphibiousPlanes = list.OfType<AmphibiousPlane>().ToArray();
         GliderPlanes     = list.OfType<GliderPlane>().ToArray();

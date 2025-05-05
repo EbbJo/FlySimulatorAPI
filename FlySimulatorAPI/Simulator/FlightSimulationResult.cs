@@ -1,5 +1,8 @@
 ﻿namespace FlySimulatorAPI.Simulator;
 
+/// <summary>
+/// The results of a flight simulation.
+/// </summary>
 public record FlightSimulationResult {
     /// <summary>
     /// Distance in kilometers travelled during the flight.

@@ -10,12 +10,16 @@ namespace FlySimulatorAPI.Tests.Models.Repository.Xml;
 [TestSubject(typeof(PlaneXmlRepository))]
 public class PlaneXmlRepositoryTest {
 
+    /// <summary>
+    /// Test that the plane repository can maintain the number of planes when
+    /// given a list by an XML mediator.
+    /// </summary>
     [Fact]
     public void GetPlanes_TwoPlanes_MaintainsCount() {
         //Arrange
         var mock = new Mock<IXmlMediator<XmlPlaneList>>();
 
-        //Setup mock with two planes of different types
+        //Setup mock mediator with two planes of different types
         mock.Setup(mediator => mediator.ReadXml(PlaneXmlRepository.XmlPath))
             .Returns(new XmlPlaneList {
                 AirLinerPlanes = [
@@ -60,12 +64,16 @@ public class PlaneXmlRepositoryTest {
         Assert.Equal(2, list.Count);
     }
     
+    /// <summary>
+    /// Test that the "Add" method on the plane repository behaves as expected,
+    /// and the input list of length 2 is increased to 3.
+    /// </summary>
     [Fact]
     public void GetPlanes_TwoPlanes_IsThreeAfterAdd() {
         //Arrange
         var mock = new Mock<IXmlMediator<XmlPlaneList>>();
 
-        //Setup mock with two planes of different types
+        //Setup mediator mock with two planes of different types
         mock.Setup(mediator => mediator.ReadXml(PlaneXmlRepository.XmlPath))
             .Returns(new XmlPlaneList {
                 AirLinerPlanes = [
@@ -101,7 +109,7 @@ public class PlaneXmlRepositoryTest {
 
         //Act
         
-        //Add a new plane to the list
+        //Add a new plane to the list, make it a different type to the others for good measure.
         repo.Add(new MilitaryPlane(
             "SomeModel",
             12500d,

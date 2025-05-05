@@ -7,7 +7,7 @@ using FlySimulatorAPI.Models.Repository;
 namespace FlySimulatorAPI.Simulator;
 
 /// <summary>
-/// Simulates flights.
+/// Simulates a flight from a given set of data.
 /// </summary>
 /// <param name="planeRepository">Repository of planes (dependency injected).</param>
 /// <param name="employeeRepository">Repository of employees (dependency injected).</param>

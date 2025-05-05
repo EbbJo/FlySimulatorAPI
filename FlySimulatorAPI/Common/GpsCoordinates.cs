@@ -1,10 +1,13 @@
 ﻿namespace FlySimulatorAPI.Common;
 
 /// <summary>
-/// Represents a point on the earth. Earth's radius is assumed to be 6371km.
+/// Represents a point on the earth, with a latitude and longitude. Earth's radius is assumed to be 6371km.
 /// </summary>
 public class GpsCoordinates {
     public const double EarthRadiusKm = 6371d;
+    
+    //Values are stored in radians to make calculations easier, but are
+    //also exposed in degrees to make things easier for outside users.
     
     /// <summary>
     /// The latitude of the point in radians.
@@ -32,8 +35,17 @@ public class GpsCoordinates {
         set => LongitudeRad = value.DegreesToRadians();
     }
 
+    /// <summary>
+    /// Creates a set of GPS coordinates with latitude and longitude of zero.
+    /// </summary>
     public GpsCoordinates() {}
     
+    /// <summary>
+    /// Creates a set of GPS coordinates with the given latitude and
+    /// longitude in degrees.
+    /// </summary>
+    /// <param name="latitudeDeg">Latitude in degrees.</param>
+    /// <param name="longitudeDeg">Longitude in degrees.</param>
     public GpsCoordinates(double latitudeDeg, double longitudeDeg) {
         LatitudeDeg = latitudeDeg;
         LongitudeDeg = longitudeDeg;

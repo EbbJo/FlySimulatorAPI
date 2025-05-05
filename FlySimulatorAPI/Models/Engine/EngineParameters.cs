@@ -2,6 +2,9 @@
 
 namespace FlySimulatorAPI.Models.Engine;
 
+/// <summary>
+/// Parameters for a fuel engine.
+/// </summary>
 [Serializable]
 public class EngineParameters {
     /// <summary>

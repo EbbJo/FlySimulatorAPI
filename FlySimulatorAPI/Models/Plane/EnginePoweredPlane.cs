@@ -4,6 +4,9 @@ using FlySimulatorAPI.Models.Engine;
 
 namespace FlySimulatorAPI.Models.Plane;
 
+/// <summary>
+/// Represents a type of <see cref="Plane"/> that uses an engine for propulsion.
+/// </summary>
 public abstract class EnginePoweredPlane : Plane {
 
     /// <summary>

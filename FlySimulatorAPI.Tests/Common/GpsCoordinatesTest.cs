@@ -8,12 +8,11 @@ namespace FlySimulatorAPI.Tests.Common;
 [TestSubject(typeof(GpsCoordinates))]
 public class GpsCoordinatesTest {
 
+    /// <summary>
+    /// Test that the "DistKm" method follows the formula as documented.
+    /// </summary>
     [Fact]
     public void DistKm_TwoPoints_ExpectedValue() {
-        /*
-         * Test that the "DistKm" method follows the formula
-         */
-        
         //Arrange
 
         GpsCoordinates p1 = new(55.74693907446503, 9.148272574884944);
@@ -43,13 +42,12 @@ public class GpsCoordinatesTest {
         Assert.Equal(expected, dist);
     }
 
+    /// <summary>
+    /// Test that the "ChainDistKm" method behaves expectedly
+    /// (sums up the distance between a series of points)
+    /// </summary>
     [Fact]
     public void ChainDistKm_ThreePoints_ExpectedValue() {
-        /*
-         * Test that the "ChainDistKm" method behaves expectedly
-         * (sums up the distance between a series of points)
-         */
-        
         //Arrange
 
         GpsCoordinates p1 = new(55.74693907446503, 9.148272574884944);

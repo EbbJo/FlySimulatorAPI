@@ -3,10 +3,16 @@ using FlySimulatorAPI.Common;
 
 namespace FlySimulatorAPI.Models.Plane;
 
+/// <summary>
+/// Base class for all plane types.
+/// </summary>
 public abstract class Plane {
     [Key]
     public Guid Id { get; set; }
     
+    /// <summary>
+    /// The type of this plane.
+    /// </summary>
     public virtual PlaneType Type => PlaneType.None;
 
     /// <summary>
@@ -27,6 +33,9 @@ public abstract class Plane {
     [Required]
     public double TopSpeed { get; set; } = 0d;
 
+    /// <summary>
+    /// Instantiates the plane and gives it a new unique ID.
+    /// </summary>
     protected Plane() {
         Id = Guid.NewGuid();
     }

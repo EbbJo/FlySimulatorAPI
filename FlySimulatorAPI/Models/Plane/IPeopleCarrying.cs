@@ -2,6 +2,9 @@
 
 namespace FlySimulatorAPI.Models.Plane;
 
+/// <summary>
+/// Represents a plane that carries passengers.
+/// </summary>
 public interface IPeopleCarrying {
     /// <summary>
     /// Amount of passengers this plane can hold.

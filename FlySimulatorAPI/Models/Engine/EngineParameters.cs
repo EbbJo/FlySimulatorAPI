@@ -15,4 +15,8 @@ public class EngineParameters {
     /// </summary>
     [Required]
     public double FuelEfficiency { get; set; } = 0d;
+
+    public override string ToString() {
+        return $"FuelCapacity: {FuelCapacity}L, FuelEfficiency: {FuelEfficiency}L/km";
+    }
 }

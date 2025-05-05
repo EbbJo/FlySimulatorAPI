@@ -29,4 +29,10 @@ public class MilitaryPlane : EnginePoweredPlane, IPeopleCarrying, ICargoCarrying
         FullPassengerCapacityWeightAddition = fullPassengerCapacityWeightAddition;
         CargoWeightCapacity = cargoWeightCapacity;
     }
+    
+    public override string ToString() {
+        return base.ToString() + $", Passenger Capacity: {PassengerCapacity}, " +
+               $"Weight Addition at Full Capacity: {FullPassengerCapacityWeightAddition}kg, " +
+               $"Cargo Weight Capacity: {CargoWeightCapacity}kg";
+    }
 }

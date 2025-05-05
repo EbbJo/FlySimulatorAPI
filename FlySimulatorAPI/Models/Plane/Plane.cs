@@ -55,4 +55,8 @@ public abstract class Plane {
     public virtual double FuelOverDistance(params GpsCoordinates[] coords) {
         return 0d;
     }
+
+    public override string ToString() {
+        return $"Plane {Id}: Type: {Type}, Base Weight: {BaseWeight}kg, Top Speed: {TopSpeed}km/h";
+    }
 }

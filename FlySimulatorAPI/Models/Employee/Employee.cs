@@ -22,4 +22,8 @@ public class Employee {
     public Employee() {
         Id = Guid.NewGuid();
     }
+
+    public override string ToString() {
+        return $"Employee {Id}: Name: {Name}, Type: {Type}, Salary: {Salary}USD/hr";
+    }
 }

@@ -26,4 +26,8 @@ public abstract class EnginePoweredPlane : Plane {
     public override double FuelOverDistance(params GpsCoordinates[] coords) {
         return EngineParams.FuelEfficiency * GpsCoordinates.ChainDistKm(coords);
     }
+
+    public override string ToString() {
+        return base.ToString() + $", Engine Parameters: [{EngineParams}]";
+    }
 }

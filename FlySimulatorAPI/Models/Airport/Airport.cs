@@ -17,4 +17,8 @@ public class Airport {
     public Airport() {
         Id = Guid.NewGuid();
     }
+
+    public override string ToString() {
+        return $"Airport {Id}: Name: {Name}, Position: [{Position}]";
+    }
 }
